@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HesapSistemiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cesitler">
+          <Key>
+            <PropertyRef Name="cesit_id" />
+          </Key>
+          <Property Name="cesit_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cesit_ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="cesit_fiyat" Type="nvarchar" MaxLength="50" />
+          <Property Name="yemek_fk_id" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Fatura">
+          <Key>
+            <PropertyRef Name="fatura_id" />
+          </Key>
+          <Property Name="fatura_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteri_ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="musteri_soyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="odenecek_tutar" Type="nvarchar" MaxLength="50" />
+          <Property Name="masa_fk_id" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Icecekcesit">
+          <Key>
+            <PropertyRef Name="I_cesit_id" />
+          </Key>
+          <Property Name="I_cesit_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="I_cesit_ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="I_cesit_fiyat" Type="nvarchar" MaxLength="50" />
+          <Property Name="icecek_fk_id" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="İcecekler">
+          <Key>
+            <PropertyRef Name="icecek_id" />
+          </Key>
+          <Property Name="icecek_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="icecek_ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kat_konum">
+          <Key>
+            <PropertyRef Name="kat_id" />
+          </Key>
+          <Property Name="kat_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kat_ad" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Masalar">
+          <Key>
+            <PropertyRef Name="masa_id" />
+          </Key>
+          <Property Name="konum_id_fk" Type="tinyint" />
+          <Property Name="masa_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="masa_no" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Yemekler">
+          <Key>
+            <PropertyRef Name="yemek_id" />
+          </Key>
+          <Property Name="yemek_id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yemek_cesitleri" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cesitler_Yemekler">
+          <End Role="Yemekler" Type="Self.Yemekler" Multiplicity="0..1" />
+          <End Role="Cesitler" Type="Self.Cesitler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yemekler">
+              <PropertyRef Name="yemek_id" />
+            </Principal>
+            <Dependent Role="Cesitler">
+              <PropertyRef Name="yemek_fk_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fatura_Masalar">
+          <End Role="Masalar" Type="Self.Masalar" Multiplicity="0..1" />
+          <End Role="Fatura" Type="Self.Fatura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masalar">
+              <PropertyRef Name="masa_id" />
+            </Principal>
+            <Dependent Role="Fatura">
+              <PropertyRef Name="masa_fk_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İcecekler_Icecekcesit">
+          <End Role="Icecekcesit" Type="Self.Icecekcesit" Multiplicity="1" />
+          <End Role="İcecekler" Type="Self.İcecekler" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Icecekcesit">
+              <PropertyRef Name="I_cesit_id" />
+            </Principal>
+            <Dependent Role="İcecekler">
+              <PropertyRef Name="icecek_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Masalar_Kat_konum">
+          <End Role="Kat_konum" Type="Self.Kat_konum" Multiplicity="0..1" />
+          <End Role="Masalar" Type="Self.Masalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kat_konum">
+              <PropertyRef Name="kat_id" />
+            </Principal>
+            <Dependent Role="Masalar">
+              <PropertyRef Name="konum_id_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HesapSistemiModelStoreContainer">
+          <EntitySet Name="Cesitler" EntityType="Self.Cesitler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fatura" EntityType="Self.Fatura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Icecekcesit" EntityType="Self.Icecekcesit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="İcecekler" EntityType="Self.İcecekler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kat_konum" EntityType="Self.Kat_konum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Masalar" EntityType="Self.Masalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yemekler" EntityType="Self.Yemekler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cesitler_Yemekler" Association="Self.FK_Cesitler_Yemekler">
+            <End Role="Yemekler" EntitySet="Yemekler" />
+            <End Role="Cesitler" EntitySet="Cesitler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fatura_Masalar" Association="Self.FK_Fatura_Masalar">
+            <End Role="Masalar" EntitySet="Masalar" />
+            <End Role="Fatura" EntitySet="Fatura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İcecekler_Icecekcesit" Association="Self.FK_İcecekler_Icecekcesit">
+            <End Role="Icecekcesit" EntitySet="Icecekcesit" />
+            <End Role="İcecekler" EntitySet="İcecekler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Masalar_Kat_konum" Association="Self.FK_Masalar_Kat_konum">
+            <End Role="Kat_konum" EntitySet="Kat_konum" />
+            <End Role="Masalar" EntitySet="Masalar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HesapSistemiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cesitler">
+          <Key>
+            <PropertyRef Name="cesit_id" />
+          </Key>
+          <Property Name="cesit_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cesit_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cesit_fiyat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="yemek_fk_id" Type="Byte" />
+          <NavigationProperty Name="Yemekler" Relationship="Self.FK_Cesitler_Yemekler" FromRole="Cesitler" ToRole="Yemekler" />
+        </EntityType>
+        <EntityType Name="Fatura">
+          <Key>
+            <PropertyRef Name="fatura_id" />
+          </Key>
+          <Property Name="fatura_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="musteri_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteri_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="odenecek_tutar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="masa_fk_id" Type="Byte" />
+          <NavigationProperty Name="Masalar" Relationship="Self.FK_Fatura_Masalar" FromRole="Fatura" ToRole="Masalar" />
+        </EntityType>
+        <EntityType Name="Icecekcesit">
+          <Key>
+            <PropertyRef Name="I_cesit_id" />
+          </Key>
+          <Property Name="I_cesit_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="I_cesit_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="I_cesit_fiyat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="icecek_fk_id" Type="Byte" />
+          <NavigationProperty Name="İcecekler" Relationship="Self.FK_İcecekler_Icecekcesit" FromRole="Icecekcesit" ToRole="İcecekler" />
+        </EntityType>
+        <EntityType Name="İcecekler">
+          <Key>
+            <PropertyRef Name="icecek_id" />
+          </Key>
+          <Property Name="icecek_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="icecek_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Icecekcesit" Relationship="Self.FK_İcecekler_Icecekcesit" FromRole="İcecekler" ToRole="Icecekcesit" />
+        </EntityType>
+        <EntityType Name="Kat_konum">
+          <Key>
+            <PropertyRef Name="kat_id" />
+          </Key>
+          <Property Name="kat_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kat_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Masalar" Relationship="Self.FK_Masalar_Kat_konum" FromRole="Kat_konum" ToRole="Masalar" />
+        </EntityType>
+        <EntityType Name="Masalar">
+          <Key>
+            <PropertyRef Name="masa_id" />
+          </Key>
+          <Property Name="konum_id_fk" Type="Byte" />
+          <Property Name="masa_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="masa_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Fatura" Relationship="Self.FK_Fatura_Masalar" FromRole="Masalar" ToRole="Fatura" />
+          <NavigationProperty Name="Kat_konum" Relationship="Self.FK_Masalar_Kat_konum" FromRole="Masalar" ToRole="Kat_konum" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Yemekler">
+          <Key>
+            <PropertyRef Name="yemek_id" />
+          </Key>
+          <Property Name="yemek_id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yemek_cesitleri" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cesitler" Relationship="Self.FK_Cesitler_Yemekler" FromRole="Yemekler" ToRole="Cesitler" />
+        </EntityType>
+        <Association Name="FK_Cesitler_Yemekler">
+          <End Role="Yemekler" Type="Self.Yemekler" Multiplicity="0..1" />
+          <End Role="Cesitler" Type="Self.Cesitler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yemekler">
+              <PropertyRef Name="yemek_id" />
+            </Principal>
+            <Dependent Role="Cesitler">
+              <PropertyRef Name="yemek_fk_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fatura_Masalar">
+          <End Role="Masalar" Type="Self.Masalar" Multiplicity="0..1" />
+          <End Role="Fatura" Type="Self.Fatura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masalar">
+              <PropertyRef Name="masa_id" />
+            </Principal>
+            <Dependent Role="Fatura">
+              <PropertyRef Name="masa_fk_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İcecekler_Icecekcesit">
+          <End Role="Icecekcesit" Type="Self.Icecekcesit" Multiplicity="1" />
+          <End Role="İcecekler" Type="Self.İcecekler" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Icecekcesit">
+              <PropertyRef Name="I_cesit_id" />
+            </Principal>
+            <Dependent Role="İcecekler">
+              <PropertyRef Name="icecek_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Masalar_Kat_konum">
+          <End Role="Kat_konum" Type="Self.Kat_konum" Multiplicity="0..1" />
+          <End Role="Masalar" Type="Self.Masalar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kat_konum">
+              <PropertyRef Name="kat_id" />
+            </Principal>
+            <Dependent Role="Masalar">
+              <PropertyRef Name="konum_id_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HesapSistemiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cesitler" EntityType="Self.Cesitler" />
+          <EntitySet Name="Fatura" EntityType="Self.Fatura" />
+          <EntitySet Name="Icecekcesit" EntityType="Self.Icecekcesit" />
+          <EntitySet Name="İcecekler" EntityType="Self.İcecekler" />
+          <EntitySet Name="Kat_konum" EntityType="Self.Kat_konum" />
+          <EntitySet Name="Masalar" EntityType="Self.Masalar" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Yemekler" EntityType="Self.Yemekler" />
+          <AssociationSet Name="FK_Cesitler_Yemekler" Association="Self.FK_Cesitler_Yemekler">
+            <End Role="Yemekler" EntitySet="Yemekler" />
+            <End Role="Cesitler" EntitySet="Cesitler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fatura_Masalar" Association="Self.FK_Fatura_Masalar">
+            <End Role="Masalar" EntitySet="Masalar" />
+            <End Role="Fatura" EntitySet="Fatura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İcecekler_Icecekcesit" Association="Self.FK_İcecekler_Icecekcesit">
+            <End Role="Icecekcesit" EntitySet="Icecekcesit" />
+            <End Role="İcecekler" EntitySet="İcecekler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Masalar_Kat_konum" Association="Self.FK_Masalar_Kat_konum">
+            <End Role="Kat_konum" EntitySet="Kat_konum" />
+            <End Role="Masalar" EntitySet="Masalar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HesapSistemiModelStoreContainer" CdmEntityContainer="HesapSistemiEntities">
+          <EntitySetMapping Name="Cesitler">
+            <EntityTypeMapping TypeName="HesapSistemiModel.Cesitler">
+              <MappingFragment StoreEntitySet="Cesitler">
+                <ScalarProperty Name="cesit_id" ColumnName="cesit_id" />
+                <ScalarProperty Name="cesit_ad" ColumnName="cesit_ad" />
+                <ScalarProperty Name="cesit_fiyat" ColumnName="cesit_fiyat" />
+                <ScalarProperty Name="yemek_fk_id" ColumnName="yemek_fk_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fatura">
+            <EntityTypeMapping TypeName="HesapSistemiModel.Fatura">
+              <MappingFragment StoreEntitySet="Fatura">
+                <ScalarProperty Name="fatura_id" ColumnName="fatura_id" />
+                <ScalarProperty Name="musteri_ad" ColumnName="musteri_ad" />
+                <ScalarProperty Name="musteri_soyad" ColumnName="musteri_soyad" />
+                <ScalarProperty Name="odenecek_tutar" ColumnName="odenecek_tutar" />
+                <ScalarProperty Name="masa_fk_id" ColumnName="masa_fk_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Icecekcesit">
+            <EntityTypeMapping TypeName="HesapSistemiModel.Icecekcesit">
+              <MappingFragment StoreEntitySet="Icecekcesit">
+                <ScalarProperty Name="I_cesit_id" ColumnName="I_cesit_id" />
+                <ScalarProperty Name="I_cesit_ad" ColumnName="I_cesit_ad" />
+                <ScalarProperty Name="I_cesit_fiyat" ColumnName="I_cesit_fiyat" />
+                <ScalarProperty Name="icecek_fk_id" ColumnName="icecek_fk_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="İcecekler">
+            <EntityTypeMapping TypeName="HesapSistemiModel.İcecekler">
+              <MappingFragment StoreEntitySet="İcecekler">
+                <ScalarProperty Name="icecek_id" ColumnName="icecek_id" />
+                <ScalarProperty Name="icecek_ad" ColumnName="icecek_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kat_konum">
+            <EntityTypeMapping TypeName="HesapSistemiModel.Kat_konum">
+              <MappingFragment StoreEntitySet="Kat_konum">
+                <ScalarProperty Name="kat_id" ColumnName="kat_id" />
+                <ScalarProperty Name="kat_ad" ColumnName="kat_ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Masalar">
+            <EntityTypeMapping TypeName="HesapSistemiModel.Masalar">
+              <MappingFragment StoreEntitySet="Masalar">
+                <ScalarProperty Name="konum_id_fk" ColumnName="konum_id_fk" />
+                <ScalarProperty Name="masa_id" ColumnName="masa_id" />
+                <ScalarProperty Name="masa_no" ColumnName="masa_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HesapSistemiModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yemekler">
+            <EntityTypeMapping TypeName="HesapSistemiModel.Yemekler">
+              <MappingFragment StoreEntitySet="Yemekler">
+                <ScalarProperty Name="yemek_id" ColumnName="yemek_id" />
+                <ScalarProperty Name="yemek_cesitleri" ColumnName="yemek_cesitleri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
