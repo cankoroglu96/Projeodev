@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9a6cf044d59046119f03f34a9ff18942" Name="Diagram1">
+      <Diagram DiagramId="08d8215f215245b3814448accff481f8" Name="Diagram1">
+        <EntityTypeShape EntityType="HesapSistemiModel.Admin" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="HesapSistemiModel.Cesitler" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HesapSistemiModel.Fatura" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HesapSistemiModel.Fatura" Width="1.5" PointX="6.875" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="HesapSistemiModel.Icecekcesit" Width="1.5" PointX="5.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HesapSistemiModel.İcecekler" Width="1.5" PointX="8" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HesapSistemiModel.İcecekler" Width="1.5" PointX="10" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HesapSistemiModel.Kat_konum" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HesapSistemiModel.Masalar" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="HesapSistemiModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HesapSistemiModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HesapSistemiModel.Yemekler" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <AssociationConnector Association="HesapSistemiModel.FK_Cesitler_Yemekler" ManuallyRouted="false" />
         <AssociationConnector Association="HesapSistemiModel.FK_Fatura_Masalar" ManuallyRouted="false" />

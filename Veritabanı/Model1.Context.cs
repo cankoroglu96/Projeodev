@@ -13,10 +13,10 @@ namespace Veritabanı
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HesapSistemiEntities : DbContext
+    public partial class HesapSistemiEntities1 : DbContext
     {
-        public HesapSistemiEntities()
-            : base("name=HesapSistemiEntities")
+        public HesapSistemiEntities1()
+            : base("name=HesapSistemiEntities1")
         {
         }
     
@@ -25,6 +25,7 @@ namespace Veritabanı
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<Cesitler> Cesitler { get; set; }
         public virtual DbSet<Fatura> Fatura { get; set; }
         public virtual DbSet<Icecekcesit> Icecekcesit { get; set; }

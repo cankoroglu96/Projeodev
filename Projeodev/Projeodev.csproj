@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -43,6 +44,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -60,6 +67,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebApi">
+      <HintPath>..\..\WebApi\WebApi\obj\Debug\WebApi.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -68,6 +78,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitattributes" />
+    <Content Include="Admin.aspx" />
+    <Content Include="AdminKontrol.aspx" />
     <Content Include="assets\css\material-kit.css" />
     <Content Include="assets\css\material-kit.min.css" />
     <Content Include="assets\css\nucleo-icons.css" />
@@ -127,18 +139,325 @@
     <Content Include="assets\js\plugins\rellax.min.js" />
     <Content Include="assets\js\plugins\tilt.min.js" />
     <Content Include="assets\js\plugins\typedjs.js" />
+    <Content Include="b574a7f53d82fa9e064561fb066ccbd7e35993da_plc_170c5c9f1bb3bf235a47dba2c24970a2.jpg" />
+    <Content Include="DENEME.aspx" />
     <Content Include="docs\documentation.html" />
+    <Content Include="Giris1.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
     <Content Include="index.html" />
+    <Content Include="material-kit-2-3.0.0\.gitattributes" />
+    <Content Include="material-kit-2-3.0.0\assets\css\material-kit.css" />
+    <Content Include="material-kit-2-3.0.0\assets\css\material-kit.min.css" />
+    <Content Include="material-kit-2-3.0.0\assets\css\nucleo-icons.css" />
+    <Content Include="material-kit-2-3.0.0\assets\css\nucleo-svg.css" />
+    <Content Include="material-kit-2-3.0.0\assets\fonts\nucleo-icons.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\apple-icon.png" />
+    <Content Include="material-kit-2-3.0.0\assets\img\bg.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\bg0.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\bg10.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\bg2.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\bg3.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\bg5.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\bg9.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\bruce-mars.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\city-profile.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\down-arrow-dark.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\down-arrow-white.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\down-arrow.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\examples\blog-9-4.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\examples\blog2.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\examples\testimonial-6-2.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\examples\testimonial-6-3.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\favicon.png" />
+    <Content Include="material-kit-2-3.0.0\assets\img\illustrations\illustration-signin.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\ivana-square.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\ivana-squares.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\logo-ct-dark.png" />
+    <Content Include="material-kit-2-3.0.0\assets\img\logos\gray-logos\logo-apple.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\logos\gray-logos\logo-coinbase.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\logos\gray-logos\logo-digitalocean.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\logos\gray-logos\logo-facebook.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\logos\gray-logos\logo-nasa.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\logos\gray-logos\logo-netflix.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\logos\gray-logos\logo-pinterest.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\logos\gray-logos\logo-spotify.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\logos\gray-logos\logo-vodafone.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\macbook.png" />
+    <Content Include="material-kit-2-3.0.0\assets\img\shapes\waves-white.svg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\team-1.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\team-2.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\team-3.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\team-4.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\img\team-5.jpg" />
+    <Content Include="material-kit-2-3.0.0\assets\js\core\bootstrap.bundle.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\core\bootstrap.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\core\popper.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\material-kit.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\material-kit.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\plugins\choices.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\plugins\countup.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\plugins\flatpickr.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\plugins\highlight.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\plugins\moment.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\plugins\parallax.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\plugins\perfect-scrollbar.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\plugins\prism.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\plugins\rellax.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\plugins\tilt.min.js" />
+    <Content Include="material-kit-2-3.0.0\assets\js\plugins\typedjs.js" />
+    <Content Include="material-kit-2-3.0.0\docs\documentation.html" />
+    <Content Include="material-kit-2-3.0.0\gulpfile.js" />
+    <Content Include="material-kit-2-3.0.0\index.html" />
+    <Content Include="material-kit-2-3.0.0\pages\about-us.html" />
+    <Content Include="material-kit-2-3.0.0\pages\author.html" />
+    <Content Include="material-kit-2-3.0.0\pages\contact-us.html" />
+    <Content Include="material-kit-2-3.0.0\pages\sign-in.html" />
+    <Content Include="material-kit-2-3.0.0\presentation.html" />
+    <Content Include="material-kit-2-3.0.0\sections\attention-catchers\alerts.html" />
+    <Content Include="material-kit-2-3.0.0\sections\attention-catchers\modals.html" />
+    <Content Include="material-kit-2-3.0.0\sections\attention-catchers\tooltips-popovers.html" />
+    <Content Include="material-kit-2-3.0.0\sections\elements\avatars.html" />
+    <Content Include="material-kit-2-3.0.0\sections\elements\badges.html" />
+    <Content Include="material-kit-2-3.0.0\sections\elements\breadcrumbs.html" />
+    <Content Include="material-kit-2-3.0.0\sections\elements\buttons.html" />
+    <Content Include="material-kit-2-3.0.0\sections\elements\dropdowns.html" />
+    <Content Include="material-kit-2-3.0.0\sections\elements\progress-bars.html" />
+    <Content Include="material-kit-2-3.0.0\sections\elements\toggles.html" />
+    <Content Include="material-kit-2-3.0.0\sections\elements\typography.html" />
+    <Content Include="material-kit-2-3.0.0\sections\input-areas\forms.html" />
+    <Content Include="material-kit-2-3.0.0\sections\input-areas\inputs.html" />
+    <Content Include="material-kit-2-3.0.0\sections\navigation\nav-tabs.html" />
+    <Content Include="material-kit-2-3.0.0\sections\navigation\navbars.html" />
+    <Content Include="material-kit-2-3.0.0\sections\navigation\pagination.html" />
+    <Content Include="material-kit-2-3.0.0\sections\page-sections\features.html" />
+    <Content Include="material-kit-2-3.0.0\sections\page-sections\hero-sections.html" />
+    <Content Include="material-kit-2-3.0.0\template.html" />
     <Content Include="obj\Debug\Projeodev.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Projeodev.dll" />
     <Content Include="obj\Debug\Projeodev.pdb" />
-    <Content Include="Odevproje.aspx" />
+    <Content Include="Giris2.aspx" />
+    <Content Include="Odeme.aspx" />
     <Content Include="pages\about-us.html" />
     <Content Include="pages\author.html" />
     <Content Include="pages\contact-us.html" />
     <Content Include="pages\sign-in.html" />
     <Content Include="Properties\WebForm1.aspx" />
+    <Content Include="purple-react-1.0.0\.gitignore" />
+    <Content Include="purple-react-1.0.0\documentation\documentation.html" />
+    <Content Include="purple-react-1.0.0\documentation\script.js" />
+    <Content Include="purple-react-1.0.0\documentation\style.css" />
+    <Content Include="purple-react-1.0.0\screenshot.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\.gitignore" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\favicon.ico" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\index.html" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\logo192.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\logo512.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\precache-manifest.1a1abc38f67376807c61ef6c15f0ab21.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\robots.txt" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\service-worker.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\css\4.687196e3.chunk.css" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\css\main.d227dcc7.chunk.css" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\0.353ed173.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\1.6b8f089b.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\10.7240b0af.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\11.a4c0a761.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\12.fba9c05d.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\13.8b2bea52.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\14.ac4e3008.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\15.a531644a.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\16.46ba25ee.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\17.f5ee03ab.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\18.8a8edb67.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\4.a5364eeb.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\5.0d93b8f7.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\6.f4762678.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\7.b0f5aabe.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\8.dd111340.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\9.5187b493.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\main.20b24660.chunk.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\runtime~main.0b4c77d1.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\1.1674de7c.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\2.989ef602.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\3.3aa4e7a3.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\circle.1541da91.svg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\face1.42d41e61.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\face13.16f59cba.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\face2.7e0e382d.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\face3.16c67435.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\face4.d5afaa66.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\face5.d2417284.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\face6.07adc9a9.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\face7.7af91f95.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\img_1.3a82198a.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\img_2.1b4a771c.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\img_3.573908af.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\img_4.ea8a7a45.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\lockscreen-bg.0d7ef366.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\login-bg.2eeb0447.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\logo-mini.8aef5918.svg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\logo.a79624ec.svg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\register-bg.2ccde6b9.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\public\favicon.ico" />
+    <Content Include="purple-react-1.0.0\template\demo_1\public\index.html" />
+    <Content Include="purple-react-1.0.0\template\demo_1\public\logo192.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\public\logo512.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\public\robots.txt" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\App.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\App.test.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\AppRoutes.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\basic-ui\Buttons.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\basic-ui\Dropdowns.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\basic-ui\Typography.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\charts\ChartJs.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\dashboard\Dashboard.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\error-pages\Error404.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\error-pages\Error500.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\form-elements\BasicElements.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\general-pages\BlankPage.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\icons\Mdi.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\shared\Footer.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\shared\Navbar.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\shared\SettingsPanel.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\shared\Sidebar.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\shared\Spinner.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\tables\BasicTable.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\user-pages\Lockscreen.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\user-pages\Login.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\user-pages\Register.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\auth\lockscreen-bg.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\auth\login-bg.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\auth\register-bg.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\brand_icons\bitmap.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\brand_icons\oval-copy.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\brand_icons\oval.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\carousel\banner_1.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\carousel\banner_10.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\carousel\banner_11.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\carousel\banner_12.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\carousel\banner_2.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\carousel\banner_3.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\carousel\banner_4.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\carousel\banner_5.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\carousel\banner_6.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\carousel\banner_7.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\carousel\banner_8.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\carousel\banner_9.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\chat\profile_image.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\chat\thumb_image1.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\chat\thumb_image2.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\chat\thumb_image3.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\chat\thumb_image4.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\chat\thumb_image5.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\chat\thumb_image6.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\chat\thumb_image7.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\chat\thumb_image8.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\dashboard\circle.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\dashboard\circle.svg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\dashboard\img_1.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\dashboard\img_2.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\dashboard\img_3.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\dashboard\img_4.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\email\fb.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\email\mail-image.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\email\medium.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\email\slack.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\email\twitter.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\email\youtube.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces-clipart\pic-1.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces-clipart\pic-2.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces-clipart\pic-3.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces-clipart\pic-4.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face1.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face10.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face11.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face12.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face13.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face14.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face15.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face16.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face17.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face18.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face19.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face2.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face20.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face21.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face22.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face23.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face24.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face25.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face26.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face27.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face3.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face4.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face5.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face6.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face7.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face8.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\faces\face9.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\favicon.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\logo-mini.svg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\logo.svg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\product_images_2\thumb_image1.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\product_images_2\thumb_image10.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\product_images_2\thumb_image11.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\product_images_2\thumb_image12.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\product_images_2\thumb_image2.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\product_images_2\thumb_image3.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\product_images_2\thumb_image4.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\product_images_2\thumb_image5.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\product_images_2\thumb_image6.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\product_images_2\thumb_image7.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\product_images_2\thumb_image8.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\product_images_2\thumb_image9.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\1.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\10.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\11.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\12.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\13.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\14.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\15.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\2.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\3.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\4.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\5.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\6.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\7.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\8.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\1280x768\9.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\1.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\10.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\11.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\12.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\13.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\14.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\15.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\2.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\3.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\4.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\5.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\6.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\7.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\8.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\300x300\9.jpg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\angular-4.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\bootstrap-stack.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\charts.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\dashboard.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\e-commerce.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\editors.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\email.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\forms.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\html5.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\modal.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\popup.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\weather.svg" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\images\samples\widgets.png" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\i18n.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\index.js" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\serviceWorker.js" />
+    <Content Include="Randomgiris.aspx" />
+    <Content Include="SanalPos.aspx" />
     <Content Include="sections\attention-catchers\alerts.html" />
     <Content Include="sections\attention-catchers\modals.html" />
     <Content Include="sections\attention-catchers\tooltips-popovers.html" />
@@ -160,13 +479,51 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
-    <Compile Include="Odevproje.aspx.cs">
-      <DependentUpon>Odevproje.aspx</DependentUpon>
+    <Compile Include="Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Odevproje.aspx.designer.cs">
-      <DependentUpon>Odevproje.aspx</DependentUpon>
+    <Compile Include="Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminKontrol.aspx.cs">
+      <DependentUpon>AdminKontrol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminKontrol.aspx.designer.cs">
+      <DependentUpon>AdminKontrol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DENEME.aspx.cs">
+      <DependentUpon>DENEME.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DENEME.aspx.designer.cs">
+      <DependentUpon>DENEME.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Giris1.aspx.cs">
+      <DependentUpon>Giris1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Giris1.aspx.designer.cs">
+      <DependentUpon>Giris1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="Giris2.aspx.cs">
+      <DependentUpon>Giris2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Giris2.aspx.designer.cs">
+      <DependentUpon>Giris2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Odeme.aspx.cs">
+      <DependentUpon>Odeme.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Odeme.aspx.designer.cs">
+      <DependentUpon>Odeme.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\WebForm1.aspx.cs">
@@ -175,6 +532,20 @@
     </Compile>
     <Compile Include="Properties\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Randomgiris.aspx.cs">
+      <DependentUpon>Randomgiris.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Randomgiris.aspx.designer.cs">
+      <DependentUpon>Randomgiris.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SanalPos.aspx.cs">
+      <DependentUpon>SanalPos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SanalPos.aspx.designer.cs">
+      <DependentUpon>SanalPos.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -407,7 +778,362 @@
     <Content Include="obj\Debug\Projeodev.csproj.CopyComplete" />
     <Content Include="obj\Debug\Projeodev.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\Projeodev.csprojAssemblyReference.cache" />
+    <Content Include="material-kit-2-3.0.0\.github\workflows\main.yml" />
+    <Content Include="material-kit-2-3.0.0\.npmignore" />
+    <Content Include="material-kit-2-3.0.0\assets\css\material-kit.css.map" />
+    <Content Include="material-kit-2-3.0.0\assets\fonts\nucleo-icons.eot" />
+    <Content Include="material-kit-2-3.0.0\assets\fonts\nucleo-icons.ttf" />
+    <Content Include="material-kit-2-3.0.0\assets\fonts\nucleo-icons.woff" />
+    <Content Include="material-kit-2-3.0.0\assets\fonts\nucleo-icons.woff2" />
+    <Content Include="material-kit-2-3.0.0\assets\fonts\nucleo.eot" />
+    <Content Include="material-kit-2-3.0.0\assets\fonts\nucleo.ttf" />
+    <Content Include="material-kit-2-3.0.0\assets\fonts\nucleo.woff" />
+    <Content Include="material-kit-2-3.0.0\assets\fonts\nucleo.woff2" />
+    <Content Include="material-kit-2-3.0.0\assets\js\material-kit.js.map" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\badges\_badge-circle.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\badges\_badge-dot.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\badges\_badge-floating.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\badges\_badge.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\bootstrap-grid.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\bootstrap-reboot.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\bootstrap-utilities.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\bootstrap.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\forms\_floating-labels.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\forms\_form-check.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\forms\_form-control.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\forms\_form-range.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\forms\_form-select.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\forms\_form-text.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\forms\_input-group.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\forms\_labels.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\forms\_validation.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\helpers\_clearfix.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\helpers\_colored-links.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\helpers\_position.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\helpers\_ratio.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\helpers\_stacks.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\helpers\_stretched-link.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\helpers\_text-truncation.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\helpers\_visually-hidden.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\helpers\_vr.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_alert.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_backdrop.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_box-shadow.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_breakpoints.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_buttons.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_caret.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_color-scheme.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_container.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_deprecate.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_forms.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_gradients.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_grid.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_image.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_list-group.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_lists.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_pagination.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_resize.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_table-variants.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_text-truncate.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_transition.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_utilities.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\mixins\_visually-hidden.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\utilities\_api.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\vendor\_rfs.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_accordion.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_alert.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_badge.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_breadcrumb.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_button-group.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_buttons.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_card.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_carousel.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_close.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_containers.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_dropdown.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_forms.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_functions.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_grid.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_helpers.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_images.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_list-group.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_mixins.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_modal.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_nav.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_navbar.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_offcanvas.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_pagination.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_placeholders.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_popover.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_progress.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_reboot.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_root.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_spinners.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_tables.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_toasts.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_tooltip.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_transitions.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_type.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_utilities.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\bootstrap\_variables.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\cards\card-background.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\cards\card-blog.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\cards\card-horizontal.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\cards\card-pricing.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\cards\card-profile.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\cards\card-rotate.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\custom\_styles.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\custom\_variables.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\forms\_form-check.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\forms\_form-select.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\forms\_form-switch.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\forms\_forms.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\forms\_input-group.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\forms\_inputs.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\forms\_labels.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\mixins\mixins.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\mixins\_badge.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\mixins\_buttons.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\mixins\_colored-shadows.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\mixins\_hover.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\mixins\_social-buttons.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\mixins\_vendor.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\free\plugins.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\free\_flatpickr.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\free\_nouislider.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\free\_perfect-scrollbar.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\free\_prism.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\multi-step.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\plugins-extend.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_carousel-slick.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_choices.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_datatable-extend.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_datatable.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_dragula.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_dropzone.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_fullcalendar-extend.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_fullcalendar.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_glidejs.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_highlight.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_kanban.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_leaflet.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_list-check.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_photoswipe.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_quill.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_rating-widget.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_sweetalert2-extend.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_sweetalert2.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\plugins\pro\_vector-map.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\theme-pro.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\theme.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_animations.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_avatars.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_badge.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_breadcrumb.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_cards-extend.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_cards.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_choices.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_dark-version.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_dropdowns.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_fixed-plugin.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_form-switch.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_full-calendar.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_header.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_info-areas.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_misc-extend.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_misc.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_navbar-vertical.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_navbar.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_pagination.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_ripple.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_rtl.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_social-buttons.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_table.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_timeline.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_utilities-extend.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_utilities.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\variables\_virtual-reality.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_accordion.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_alert.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_avatars.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_backgrounds.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_badge.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_breadcrumbs.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_buttons.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_cards-extend.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_cards.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_components.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_dark-version.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_dropdown-extend.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_dropdown.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_dropup.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_fixed-plugin.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_floating-elements.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_footer.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_forms.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_gradients.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_header.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_icons.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_info-areas.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_list-check.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_misc-extend.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_misc.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_nav.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_navbar-vertical.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_navbar.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_pagination.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_popovers.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_progress.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_ripple.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_rtl-extend.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_rtl.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_social-buttons.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_tables.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_tilt.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_timeline.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_tooltips.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_typography.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_utilities-extend.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_utilities.scss" />
+    <Content Include="material-kit-2-3.0.0\assets\scss\material-kit\_variables.scss" />
+    <Content Include="material-kit-2-3.0.0\bower.json" />
+    <Content Include="material-kit-2-3.0.0\CHANGELOG.md" />
+    <Content Include="material-kit-2-3.0.0\ISSUE_TEMPLATE.md" />
+    <Content Include="material-kit-2-3.0.0\LICENSE.md" />
+    <Content Include="material-kit-2-3.0.0\package.json" />
+    <Content Include="material-kit-2-3.0.0\README.md" />
     <None Include="packages.config" />
+    <Content Include="purple-react-1.0.0\.DS_Store" />
+    <Content Include="purple-react-1.0.0\CHANGELOG.md" />
+    <Content Include="purple-react-1.0.0\LICENSE" />
+    <Content Include="purple-react-1.0.0\README.md" />
+    <Content Include="purple-react-1.0.0\template\demo_1\package-lock.json" />
+    <Content Include="purple-react-1.0.0\template\demo_1\package.json" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\.htaccess" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\asset-manifest.json" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\manifest.json" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\css\4.687196e3.chunk.css.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\css\main.d227dcc7.chunk.css.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\0.353ed173.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\1.6b8f089b.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\10.7240b0af.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\11.a4c0a761.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\12.fba9c05d.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\13.8b2bea52.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\14.ac4e3008.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\15.a531644a.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\16.46ba25ee.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\17.f5ee03ab.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\18.8a8edb67.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\4.a5364eeb.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\5.0d93b8f7.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\6.f4762678.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\7.b0f5aabe.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\8.dd111340.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\9.5187b493.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\main.20b24660.chunk.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\js\runtime~main.0b4c77d1.js.map" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\materialdesignicons-webfont.3ac50b5b.ttf" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\materialdesignicons-webfont.7ec5dab7.woff2" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\materialdesignicons-webfont.a0d13d16.woff" />
+    <Content Include="purple-react-1.0.0\template\demo_1\preview\static\media\materialdesignicons-webfont.a32fa1f2.eot" />
+    <Content Include="purple-react-1.0.0\template\demo_1\public\manifest.json" />
+    <Content Include="purple-react-1.0.0\template\demo_1\README.md" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\app\App.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\email\_mail-list-container.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\email\_mail-sidebar.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\email\_message-content.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\landing-screens\_auth.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_bar-loader.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_circle-loader.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_colored-balls.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_dot-opacity-loader.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_flip-square-loader.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_glowing-ball.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_jumping-dots-loader.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_loaders.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_moving-square-loader.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_pixel-loader.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_square-box.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_square-path-loader.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\loaders\_variables.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_contex-menu.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_date-picker.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_full-calendar.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_jquery-jvectormap.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_no-ui-slider.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_rating.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_react-bootstrap-table.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_react-photo-gallery.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_react-table.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_react-tag-autocomplete.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_slick-carousel.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_sweet-alert.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\plugin-overrides\_wizard.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_accordions.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_badges.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_bootstrap-alerts.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_bootstrap-progress.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_breadcrumbs.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_buttons.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_cards.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_chats.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_checkbox-radio.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_dropdowns.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_forms.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_icons.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_kanban.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_landing.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_lists.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_pagination.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_popovers.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_portfolio.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_preview.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_pricing-table.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_product-tile.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_project-list.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_react-table.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_spinner.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_tables.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_tabs.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_tickets.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_timeline.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_todo-list.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_tooltips.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_user-listing.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_user-profile.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\components\_widgets.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\mixins\_animation.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\mixins\_badges.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\mixins\_blockqoute.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\mixins\_buttons.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\mixins\_cards.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\mixins\_color-functions.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\mixins\_misc.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\mixins\_no-ui-slider.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\mixins\_popovers.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\mixins\_tooltips.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_background.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_dashboard.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_demo.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_fonts.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_footer.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_functions.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_layout.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_misc.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_navbar.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_reset.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_responsive.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_settings-panel.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_sidebar.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_spinner.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_typography.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_utilities.scss" />
+    <Content Include="purple-react-1.0.0\template\demo_1\src\assets\styles\_variables.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -417,6 +1143,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Siniflarim\Siniflarim.csproj">
+      <Project>{7b246653-c651-4fd4-9c98-927196d9b3cc}</Project>
+      <Name>Siniflarim</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Veritabanı\Veritabanı.csproj">
+      <Project>{9a66ec91-34cd-4f79-9bb8-df14f37c043b}</Project>
+      <Name>Veritabanı</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -448,7 +1184,10 @@
       <ErrorText>Bu proje bu bilgisayarda olmayan NuGet paketlerine başvuru yapıyor. Bunları indirmek için NuGet Paket Geri Yükleme'yi kullanın. Daha fazla bilgi için, bkz. http://go.microsoft.com/fwlink/?LinkID=322105. Eksik dosya: {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

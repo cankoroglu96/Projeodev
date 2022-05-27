@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="HesapSistemiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="admin_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="admin_pwd" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Cesitler">
           <Key>
             <PropertyRef Name="cesit_id" />
@@ -121,6 +129,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HesapSistemiModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cesitler" EntityType="Self.Cesitler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fatura" EntityType="Self.Fatura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Icecekcesit" EntityType="Self.Icecekcesit" Schema="dbo" store:Type="Tables" />
@@ -151,6 +160,14 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HesapSistemiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="admin_id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="admin_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="admin_pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="Cesitler">
           <Key>
             <PropertyRef Name="cesit_id" />
@@ -274,7 +291,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HesapSistemiEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HesapSistemiEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
           <EntitySet Name="Cesitler" EntityType="Self.Cesitler" />
           <EntitySet Name="Fatura" EntityType="Self.Fatura" />
           <EntitySet Name="Icecekcesit" EntityType="Self.Icecekcesit" />
@@ -305,7 +323,16 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HesapSistemiModelStoreContainer" CdmEntityContainer="HesapSistemiEntities">
+        <EntityContainerMapping StorageEntityContainer="HesapSistemiModelStoreContainer" CdmEntityContainer="HesapSistemiEntities1">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="HesapSistemiModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+                <ScalarProperty Name="admin_name" ColumnName="admin_name" />
+                <ScalarProperty Name="admin_pwd" ColumnName="admin_pwd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Cesitler">
             <EntityTypeMapping TypeName="HesapSistemiModel.Cesitler">
               <MappingFragment StoreEntitySet="Cesitler">
